@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CoinItem from "./CoinItem";
+import CoinPage from "./CoinPage";
 const CoinList = ({ coins }) => {
   return (
     <div className="lg:max-w-[1260px] max-w-[85%] w-full mx-auto mt-8">
@@ -15,7 +16,11 @@ const CoinList = ({ coins }) => {
         </div>
       </div>
       {coins.map((coin, i) => {
-        return <CoinItem coin={coin} key={i} />;
+        return (
+          <Link to={`/coin/${coin.id}`} element={<CoinPage />} key={i}>
+            <CoinItem coin={coin} key={i} />
+          </Link>
+        );
       })}
     </div>
   );

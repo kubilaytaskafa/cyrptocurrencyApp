@@ -1,9 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import CoinList from "./components/CoinList";
+import CoinPage from "./components/CoinPage";
+
 const App = () => {
   const [coins, setCoins] = useState([]);
   const API_URL =
@@ -21,12 +22,15 @@ const App = () => {
   useEffect(() => {
     getCoins();
   }, []);
-  console.log(coins);
+
   return (
-    <div className="bg-gray-900 h-w w-full m-0 p-4">
+    <div className="h-screen w-full m-0 p-4">
       <Navbar />
       <Routes>
+        {/* Coin List */}
         <Route path="/" element={<CoinList coins={coins} />} />
+        {/* CoinPage, coinId parametresi ile */}
+        <Route path="/coin/:coinId" element={<CoinPage />} />
       </Routes>
     </div>
   );
